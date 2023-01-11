@@ -91,27 +91,27 @@ export const connect = () => {
 
           let claimingAddress = accounts[0];
 
-          if (WLAddr.includes(claimingAddress.toLowerCase())) {
-            console.log("success");
+          // if (WLAddr.includes(claimingAddress.toLowerCase())) {
+          //   console.log("success");
 
-            dispatch(
-              connectSuccess({
-                account: accounts[0],
-                smartContract: SmartContractObj,
-                web3: web3,
-              })
-            );
-            // Add listeners start
-            ethereum.on("accountsChanged", (accounts) => {
-              dispatch(updateAccount(accounts[0]));
-            });
-            ethereum.on("chainChanged", () => {
-              window.location.reload();
-            });
-            // Add listeners end
-          } else {
-            dispatch(connectFailed("You are not in the whitelist"));
-          }
+          dispatch(
+            connectSuccess({
+              account: accounts[0],
+              smartContract: SmartContractObj,
+              web3: web3,
+            })
+          );
+          // Add listeners start
+          ethereum.on("accountsChanged", (accounts) => {
+            dispatch(updateAccount(accounts[0]));
+          });
+          ethereum.on("chainChanged", () => {
+            window.location.reload();
+          });
+          // Add listeners end
+          // } else {
+          //   dispatch(connectFailed("You are not in the whitelist"));
+          // }
         } else {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
         }
