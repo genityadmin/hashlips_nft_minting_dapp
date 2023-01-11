@@ -1,6 +1,6 @@
 {
-  "CONTRACT_ADDRESS": "0xB1611bB2208275022715A53f8e664E1d07Ac8847",
-  "SCAN_LINK": "https://goerli.etherscan.io/address/0xB1611bB2208275022715A53f8e664E1d07Ac8847",
+  "CONTRACT_ADDRESS": "0xaD7A9a1726D397BC342162869C011D96EcDd23FC",
+  "SCAN_LINK": "https://goerli.etherscan.io/address/0xaD7A9a1726D397BC342162869C011D96EcDd23FC",
   "NETWORK": {
     "NAME": "Goerli",
     "SYMBOL": "GTH",
@@ -13,6 +13,6 @@
   "DISPLAY_COST": 0.01,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
-  "MARKETPLACE_LINK": "https://testnets.opensea.io/collection/NKtesting2",
+  "MARKETPLACE_LINK": "https://testnets.opensea.io/collection/NKtesting6",
   "SHOW_BACKGROUND": true
 }

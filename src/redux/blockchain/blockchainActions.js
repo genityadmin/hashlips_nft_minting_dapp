@@ -3,6 +3,9 @@ import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 // log
 import { fetchData } from "../data/dataActions";
+//merkleTree
+import { MerkleTree } from "merkletreejs";
+import keccak256 from "keccak256";
 
 const connectRequest = () => {
   return {
@@ -50,6 +53,7 @@ export const connect = () => {
     const CONFIG = await configResponse.json();
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
+
     if (metamaskIsInstalled) {
       Web3EthContract.setProvider(ethereum);
       let web3 = new Web3(ethereum);
@@ -65,21 +69,49 @@ export const connect = () => {
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
-          dispatch(
-            connectSuccess({
-              account: accounts[0],
-              smartContract: SmartContractObj,
-              web3: web3,
-            })
-          );
-          // Add listeners start
-          ethereum.on("accountsChanged", (accounts) => {
-            dispatch(updateAccount(accounts[0]));
-          });
-          ethereum.on("chainChanged", () => {
-            window.location.reload();
-          });
-          // Add listeners end
+          let whitelistAddresses = [
+            "0xB9acB63FD20a57946a158eE73A33a66aE3633260"
+          ]
+
+          const WLAddr = whitelistAddresses.map(whitelistAddresses => whitelistAddresses.toLowerCase());
+
+          // const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
+          // const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+
+          // const rootHash = merkleTree.getRoot();
+
+          // console.log(leafNodes[0]);
+
+          // const claimingAddress = leafNodes[0];
+
+          // const hexProof = merkleTree.getHexProof(claimingAddress);
+
+          // console.log(hexProof)
+          // if (merkleTree.verify(hexProof, accounts[0], rootHash)) {
+
+          let claimingAddress = accounts[0];
+
+          if (WLAddr.includes(claimingAddress.toLowerCase())) {
+            console.log("success");
+
+            dispatch(
+              connectSuccess({
+                account: accounts[0],
+                smartContract: SmartContractObj,
+                web3: web3,
+              })
+            );
+            // Add listeners start
+            ethereum.on("accountsChanged", (accounts) => {
+              dispatch(updateAccount(accounts[0]));
+            });
+            ethereum.on("chainChanged", () => {
+              window.location.reload();
+            });
+            // Add listeners end
+          } else {
+            dispatch(connectFailed("You are not in the whitelist"));
+          }
         } else {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
         }

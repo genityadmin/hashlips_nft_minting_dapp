@@ -162,8 +162,8 @@ function App() {
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 5) {
-      newMintAmount = 5;
+    if (newMintAmount > 2) {
+      newMintAmount = 2;
     }
     setMintAmount(newMintAmount);
   };
