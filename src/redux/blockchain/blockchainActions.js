@@ -70,7 +70,7 @@ export const connect = () => {
             CONFIG.CONTRACT_ADDRESS
           );
           let whitelistAddresses = [
-            "0xB9acB63FD20a57946a158eE73A33a66aE3633260"
+            "0xB9acB63FD20a57946a158eE73A33a66aE3633260", "0x7F7b4b1399398781F20042645E429CEB224A3399", "0x0d127407049297CD917cc966e0692b71DaEb7dd3", "0x3e5584cD01908145D6b1e99c763607Be609066e6"
           ]
 
           const WLAddr = whitelistAddresses.map(whitelistAddresses => whitelistAddresses.toLowerCase());
